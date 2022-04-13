@@ -1,3 +1,5 @@
+;Se citesc doua cifre a si b (0-9). Sa se calculeze si sa se afiseze restul impartirii a/b.
+
 section .text 
 
 global _start 

@@ -1,0 +1,145 @@
+section .text 
+
+global _start 
+
+_start: 
+
+	MOV EAX, 4 
+
+	MOV EBX, 1 
+
+	MOV ECX, msg1 
+
+	MOV EDX, len1 
+
+	INT 80h 
+
+ 
+
+	MOV EAX, 3 
+
+	MOV EBX, 2 
+
+	MOV ECX, x 
+
+	MOV EDX, 1 ; citire x 
+
+	INT 80h 
+
+ 
+
+	MOV EAX, 3 
+
+	MOV EBX, 2 
+
+	MOV ECX, ent 
+
+	MOV EDX, 1 
+
+	INT 80h 
+
+ 
+
+	MOV EAX, 3 
+
+	MOV EBX, 2 
+
+	MOV ECX, y ;citire y 
+
+	MOV EDX, 1 
+
+	INT 80h 
+
+ 
+
+	MOV EDX, 0 
+
+	XOR EAX, EAX 
+
+	XOR EBX, EBX 
+
+	XOR AH, AH 
+
+	MOV AL, [x] 
+
+	MOV BL, [y] 
+
+ 
+
+	SUB AL, '0' 
+
+	SUB BL, '0' ;adaug x,y in registrii, transform din ascii 
+
+ 
+
+	DIV BL ;impart 
+
+ 
+
+	ADD AH, '0'; AL catul, AH restul 
+
+	ADD DL, '0' 
+
+ 
+
+	MOV [r], AH 
+
+ 
+
+	MOV EAX, 4 
+
+	MOV EBX, 1 
+
+	MOV ECX, msg2 
+
+	MOV EDX, len2 
+
+	INT 80h 
+
+ 
+
+	MOV EAX, 4 
+
+	MOV EBX, 1 
+
+	MOV ECX, r 
+
+	MOV EDX, 1 
+
+	INT 80h 
+
+ 
+
+	MOV EAX, 1 
+
+	MOV EBX, 0 
+
+	INT 80h 
+
+ 
+
+ 
+
+section .data 
+
+msg1 db 'Introduceti x si y: ' 
+
+len1 equ $ - msg1 
+
+ 
+
+msg2 db 'Restul impartirii: ' 
+
+len2 equ $ - msg2 
+
+ 
+
+section .bss 
+
+x resb 1 
+
+y resb 1 
+
+r resb 1 
+
+ent resb 1
